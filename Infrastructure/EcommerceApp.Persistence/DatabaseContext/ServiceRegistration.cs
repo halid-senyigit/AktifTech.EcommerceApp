@@ -18,6 +18,7 @@ namespace EcommerceApp.Persistence.DatabaseContext
         {
             var db = services.BuildServiceProvider().GetRequiredService<ECommerceDbContext>();
             db.Database.EnsureCreated();
+            new DatabaseSeed(db).SeedAll();
         }
 
     }
