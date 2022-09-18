@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EcommerceApp.Persistence.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
+using ECommerceApp.Application.DTOs.Customers;
+using ECommerceApp.Application.DTOs.Orders;
 
 namespace EcommerceApp.Persistence.Repositories
 {
@@ -14,6 +17,16 @@ namespace EcommerceApp.Persistence.Repositories
     {
         public CustomerOrderRepository(ECommerceDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public async Task<List<CustomerOrder>> GetAllCustomerOrdersWithProductsAsync()
+        {
+            var dbResult = await base.table
+                .Include(n => n.CustomerOrderProductRels)
+                .ThenInclude(n => n.Product)
+                .ToListAsync();
+
+            return dbResult;
         }
     }
 }

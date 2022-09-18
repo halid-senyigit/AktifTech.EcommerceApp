@@ -13,7 +13,7 @@ namespace EcommerceApp.Persistence.Repositories.Common
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly ECommerceDbContext dbContext;
-        private readonly DbSet<T> table;
+        protected readonly DbSet<T> table;
 
         public GenericRepository(ECommerceDbContext dbContext)
         {
