@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace EcommerceApp.Domain.Entities
 {
+    // bir kullanıcının birden fazla siparişi olabilir.
     public class CustomerOrder : BaseEntity
     {
         public int CustomerId { get; set; } = 0;
-        public virtual Customer Customer { get; set; } = new Customer();
+        public virtual Customer Customer { get; set; } = new();
 
 
-        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+        // siparişlerin ürünler ile bağlandığı ara tablo
+        public virtual ICollection<CustomerOrderProductRel> CustomerOrderProductRels { get; set; } = new List<CustomerOrderProductRel>();
 
     }
 }

@@ -15,5 +15,9 @@ namespace EcommerceApp.Domain.Entities
         public int Quantity { get; set; } = 0;
         public decimal Price { get; set; } = 0;
 
+
+        public virtual ICollection<CustomerOrderProductRel> CustomerOrderProductRel { get; set; } = new List<CustomerOrderProductRel>();
+
+
     }
 }

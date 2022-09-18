@@ -11,5 +11,7 @@ namespace EcommerceApp.Domain.Entities
     {
         public string Name { get; set; } = string.Empty;
         public string Adress { get; set; } = string.Empty;
+
+        public virtual ICollection<CustomerOrder> CustomerOrders { get; set; } = new List<CustomerOrder>();
     }
 }

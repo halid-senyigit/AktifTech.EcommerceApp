@@ -17,7 +17,9 @@ namespace EcommerceApp.Persistence.DatabaseContext
         private static void MigrateDatabase(IServiceCollection services)
         {
             var db = services.BuildServiceProvider().GetRequiredService<ECommerceDbContext>();
-            db.Database.EnsureCreated();
+
+            db.Database.Migrate();
+
             new DatabaseSeed(db).SeedAll();
         }
 
