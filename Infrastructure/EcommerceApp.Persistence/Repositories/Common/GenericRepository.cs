@@ -28,17 +28,17 @@ namespace EcommerceApp.Persistence.Repositories.Common
             return entity;
         }
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<T>> GetAllAsync()
         {
             return await table.ToListAsync();
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await table.FindAsync(id) ?? throw new NullReferenceException("Cannot find any record: " + id.ToString());
         }
 
-        public async Task<List<T>> GetByQuery(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetByQueryAsync(Expression<Func<T, bool>> expression)
         {
             return await table.Where(expression).ToListAsync();
         }

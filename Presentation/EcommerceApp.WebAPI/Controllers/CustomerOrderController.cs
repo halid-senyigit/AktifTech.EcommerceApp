@@ -1,4 +1,6 @@
-﻿using ECommerceApp.Application.Repositories;
+﻿using ECommerceApp.Application.Features.Customers.Queries;
+using ECommerceApp.Application.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,18 +10,19 @@ namespace EcommerceApp.WebAPI.Controllers
     [ApiController]
     public class CustomerOrderController : ControllerBase
     {
-        private readonly ICustomerOrderRepository customerOrderRepository;
+        private readonly IMediator mediator;
 
-        public CustomerOrderController(ICustomerOrderRepository customerOrderRepository)
+        public CustomerOrderController(IMediator mediator)
         {
-            this.customerOrderRepository = customerOrderRepository;
+            this.mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var a = await customerOrderRepository.GetAll();
-            return Ok("test");
+            var query = new GetAllCustomersQuery();
+            return Ok(await mediator.Send(query));
         }
+
     }
 }

@@ -7,7 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EcommerceApp.Domain\EcommerceApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\CustomerOrders\Commands\" />
+    <Folder Include="Features\CustomerOrders\Queries\" />
+    <Folder Include="Features\Customers\Commands\" />
+    <Folder Include="Features\Products\Commands\" />
+    <Folder Include="Features\Products\Queries\" />
   </ItemGroup>
 
 </Project>
