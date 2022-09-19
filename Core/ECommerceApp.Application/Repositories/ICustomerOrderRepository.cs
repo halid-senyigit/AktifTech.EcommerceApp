@@ -11,6 +11,6 @@ namespace ECommerceApp.Application.Repositories
 {
     public interface ICustomerOrderRepository : IGenericRepository<CustomerOrder>
     {
-        public Task<List<CustomerOrder>> GetAllCustomerOrdersWithProductsAsync();
+        public Task<List<CustomerOrder>> GetAllCustomerOrdersWithProductsAsync(int orderId);
     }
 }

@@ -18,6 +18,8 @@ namespace ECommerceApp.Application.Repositories.Common
 
         Task<T> AddAsync(T entity);
 
+        Task<List<T>> AddRangeAsync(List<T> entities);
+
         Task<int> RemoveAsync(T entity);
 
         Task<T> UpdateAsync(T entity); // finds with id and applies all field changes

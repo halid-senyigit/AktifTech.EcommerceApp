@@ -28,6 +28,13 @@ namespace EcommerceApp.Persistence.Repositories.Common
             return entity;
         }
 
+        public async Task<List<T>> AddRangeAsync(List<T> entities)
+        {
+            await table.AddRangeAsync(entities);
+            await SaveChangesAsync();
+            return entities;
+        }
+
         public async Task<List<T>> GetAllAsync()
         {
             return await table.ToListAsync();
@@ -69,5 +76,6 @@ namespace EcommerceApp.Persistence.Repositories.Common
 
             return await dbContext.SaveChangesAsync();
         }
+
     }
 }

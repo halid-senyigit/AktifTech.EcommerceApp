@@ -12,11 +12,11 @@ namespace EcommerceApp.Domain.Entities
     {
 
         public int CustomerOrderId { get; set; }
-        public CustomerOrder CustomerOrder { get; set; } = new();
+        public CustomerOrder CustomerOrder { get; set; }
 
 
         public int ProductId { get; set; }
-        public virtual Product Product { get; set; } = new();
+        public virtual Product Product { get; set; }
 
 
         public int Quantity { get; set; } = 1;

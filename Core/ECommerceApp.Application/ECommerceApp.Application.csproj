@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="DTOs\Products\" />
+    <Folder Include="Features\CustomerOrderProductRel\Queries\" />
     <Folder Include="Features\Customers\Commands\" />
     <Folder Include="Features\Products\Commands\" />
     <Folder Include="Features\Products\Queries\" />

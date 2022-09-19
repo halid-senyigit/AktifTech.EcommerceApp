@@ -1,4 +1,7 @@
-﻿using ECommerceApp.Application.DTOs.CustomerOrders;
+﻿using ECommerceApp.Application.DTOs.Common;
+using ECommerceApp.Application.DTOs.CustomerOrderProductRel;
+using ECommerceApp.Application.DTOs.CustomerOrders;
+using ECommerceApp.Application.Features.CustomerOrderProductRel.Commands;
 using ECommerceApp.Application.Features.CustomerOrders.Commands;
 using ECommerceApp.Application.Features.CustomerOrders.Queries;
 using ECommerceApp.Application.Features.Customers.Queries;
@@ -6,6 +9,7 @@ using ECommerceApp.Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EcommerceApp.WebAPI.Controllers
 {
@@ -31,6 +35,12 @@ namespace EcommerceApp.WebAPI.Controllers
             return Ok(await mediator.Send(query));
         }
 
+        [HttpGet("{orderId}", Name = "GetOrderById")]
+        public async Task<IActionResult> GetOrderById(int orderId)
+        {
+            var query = new GetAllOrdersQuery(orderId);
+            return Ok(await mediator.Send(query));
+        }
 
         /// <summary>
         /// 5. The client that is consuming the API must be able to save a CustomerOrder via an endpoint.
@@ -40,7 +50,13 @@ namespace EcommerceApp.WebAPI.Controllers
         public async Task<IActionResult> CreateOrder(CreateCustomerOrderCommand data)
         {
             var order = await mediator.Send(data);
-            return Ok(order);
+            var products = await mediator.Send(new AddProductsToOrderCommand
+            {
+                CustomerOrderId = order.Result.Value, // CustomerOrderId
+                OrderInformations = data.OrderInformations
+            });
+
+            return Ok(await mediator.Send(new GetAllOrdersQuery(order.Result.Value)));
         }
 
 

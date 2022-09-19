@@ -14,7 +14,7 @@ namespace EcommerceApp.Domain.Entities
         public string Address { get; set; } = string.Empty; // shipping address
 
         public int CustomerId { get; set; } = 0;
-        public virtual Customer Customer { get; set; } = new();
+        public virtual Customer Customer { get; set; }
 
 
         // siparişlerin ürünler ile bağlandığı ara tablo

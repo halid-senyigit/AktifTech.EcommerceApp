@@ -14,6 +14,17 @@ namespace ECommerceApp.Application.Features.CustomerOrders.Queries
 {
     public class GetAllOrdersQuery: IRequest<ServiceWrapper<List<GetOrderListDTO>>>
     {
+        public GetAllOrdersQuery()
+        {
+
+        }
+
+        public GetAllOrdersQuery(int orderId)
+        {
+            OrderId = orderId;
+        }
+
+        public int OrderId { get; set; } = 0;
 
         public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, ServiceWrapper<List<GetOrderListDTO>>>
         {
@@ -26,7 +37,7 @@ namespace ECommerceApp.Application.Features.CustomerOrders.Queries
 
             public async Task<ServiceWrapper<List<GetOrderListDTO>>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
             {
-                var orders = await customerOrderRepository.GetAllCustomerOrdersWithProductsAsync();
+                var orders = await customerOrderRepository.GetAllCustomerOrdersWithProductsAsync(request.OrderId);
                 var result = new ServiceWrapper<List<GetOrderListDTO>>(orders.Select(n => new GetOrderListDTO
                 {
                     OrderId = n.Id,

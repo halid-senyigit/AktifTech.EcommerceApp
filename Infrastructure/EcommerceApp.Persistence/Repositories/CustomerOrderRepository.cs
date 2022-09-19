@@ -17,12 +17,18 @@ namespace EcommerceApp.Persistence.Repositories
         {
         }
 
-        public async Task<List<CustomerOrder>> GetAllCustomerOrdersWithProductsAsync()
+        public async Task<List<CustomerOrder>> GetAllCustomerOrdersWithProductsAsync(int orderId)
         {
-            var dbResult = await base.table
+            var query = base.table
                 .Include(n => n.CustomerOrderProductRels)
                 .ThenInclude(n => n.Product)
-                .ToListAsync();
+                .AsQueryable();
+
+            if (orderId > 0)
+                query = query.Where(n => n.Id == orderId);
+
+
+            var dbResult = await query.ToListAsync();
 
             return dbResult;
         }

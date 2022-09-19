@@ -15,6 +15,7 @@ namespace EcommerceApp.Persistence.Repositories.Common
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<ICustomerOrderRepository, CustomerOrderRepository>();
+            services.AddTransient<ICustomerOrderProductRelRepository, CustomerOrderProductRelRepository>();
         }
     }
 }
