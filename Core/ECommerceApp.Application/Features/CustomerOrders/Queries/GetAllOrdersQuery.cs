@@ -1,6 +1,6 @@
 ﻿using ECommerceApp.Application.DTOs.Common;
 using ECommerceApp.Application.DTOs.Customers;
-using ECommerceApp.Application.DTOs.Orders;
+using ECommerceApp.Application.DTOs.CustomerOrders;
 using ECommerceApp.Application.Features.Customers.Queries;
 using ECommerceApp.Application.Repositories;
 using MediatR;
@@ -14,32 +14,34 @@ namespace ECommerceApp.Application.Features.CustomerOrders.Queries
 {
     public class GetAllOrdersQuery: IRequest<ServiceWrapper<List<GetOrderListDTO>>>
     {
-    }
 
-    public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, ServiceWrapper<List<GetOrderListDTO>>>
-    {
-        private readonly ICustomerOrderRepository customerOrderRepository;
-
-        public GetAllOrdersQueryHandler(ICustomerOrderRepository customerOrderRepository)
+        public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, ServiceWrapper<List<GetOrderListDTO>>>
         {
-            this.customerOrderRepository = customerOrderRepository;
-        }
+            private readonly ICustomerOrderRepository customerOrderRepository;
 
-        public async Task<ServiceWrapper<List<GetOrderListDTO>>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
-        {
-            var orders = await customerOrderRepository.GetAllCustomerOrdersWithProductsAsync();
-            var result = new ServiceWrapper<List<GetOrderListDTO>>(orders.Select(n => new GetOrderListDTO
+            public GetAllOrdersQueryHandler(ICustomerOrderRepository customerOrderRepository)
             {
-                OrderId = n.Id,
-                Products = n.CustomerOrderProductRels.Select(x => new GetOrderListDTO.ProductDTO
-                {
-                    ProductId = x.ProductId,
-                    Name = x.Product.Name,
-                    Price = x.Product.Price
-                }).ToList()
-            }).ToList());
+                this.customerOrderRepository = customerOrderRepository;
+            }
 
-            return result;
+            public async Task<ServiceWrapper<List<GetOrderListDTO>>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
+            {
+                var orders = await customerOrderRepository.GetAllCustomerOrdersWithProductsAsync();
+                var result = new ServiceWrapper<List<GetOrderListDTO>>(orders.Select(n => new GetOrderListDTO
+                {
+                    OrderId = n.Id,
+                    Products = n.CustomerOrderProductRels.Select(x => new GetOrderListDTO.ProductDTO
+                    {
+                        ProductId = x.ProductId,
+                        Name = x.Product.Name,
+                        Price = x.Product.Price
+                    }).ToList()
+                }).ToList());
+
+                return result;
+            }
         }
     }
+
+    
 }

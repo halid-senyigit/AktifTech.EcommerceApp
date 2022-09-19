@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceApp.Persistence.DatabaseContext
 {
-    //dotnet ef migrations add RelationFix --project Infrastructure\EcommerceApp.Persistence\EcommerceApp.Persistence.csproj --startup-project Presentation\EcommerceApp.WebAPI\EcommerceApp.WebAPI.csproj
+    //dotnet ef migrations add QuantityAndAddressColumnsAdded --project Infrastructure\EcommerceApp.Persistence\EcommerceApp.Persistence.csproj --startup-project Presentation\EcommerceApp.WebAPI\EcommerceApp.WebAPI.csproj
     public class ECommerceDbContext : DbContext
     {
 

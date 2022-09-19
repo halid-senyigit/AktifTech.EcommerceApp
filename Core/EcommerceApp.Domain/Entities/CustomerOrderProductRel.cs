@@ -19,5 +19,7 @@ namespace EcommerceApp.Domain.Entities
         public virtual Product Product { get; set; } = new();
 
 
+        public int Quantity { get; set; } = 1;
+
     }
 }

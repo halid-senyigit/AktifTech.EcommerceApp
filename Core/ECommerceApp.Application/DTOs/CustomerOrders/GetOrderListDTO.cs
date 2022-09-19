@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerceApp.Application.DTOs.Orders
+namespace ECommerceApp.Application.DTOs.CustomerOrders
 {
     public class GetOrderListDTO
     {

@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using EcommerceApp.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
-using ECommerceApp.Application.DTOs.Customers;
-using ECommerceApp.Application.DTOs.Orders;
 
 namespace EcommerceApp.Persistence.Repositories
 {

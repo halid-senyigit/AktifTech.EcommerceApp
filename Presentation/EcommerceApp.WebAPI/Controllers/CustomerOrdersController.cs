@@ -1,4 +1,6 @@
-﻿using ECommerceApp.Application.Features.CustomerOrders.Queries;
+﻿using ECommerceApp.Application.DTOs.CustomerOrders;
+using ECommerceApp.Application.Features.CustomerOrders.Commands;
+using ECommerceApp.Application.Features.CustomerOrders.Queries;
 using ECommerceApp.Application.Features.Customers.Queries;
 using ECommerceApp.Application.Repositories;
 using MediatR;
@@ -29,11 +31,35 @@ namespace EcommerceApp.WebAPI.Controllers
             return Ok(await mediator.Send(query));
         }
 
+
+        /// <summary>
+        /// 5. The client that is consuming the API must be able to save a CustomerOrder via an endpoint.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateOrder()
+        public async Task<IActionResult> CreateOrder(CreateCustomerOrderCommand data)
         {
-            return Ok("test");
+            var order = await mediator.Send(data);
+            return Ok(order);
         }
+
+
+        /// <summary>
+        /// 6. The client that is consuming the API must be able to delete a CustomerOrder via an endpoint.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOrder()
+        {
+            return Ok("DeleteOrder");
+        }
+
+        // The client may change the product’s quantity
+
+        // add new product or remove a product from the CustomerOrder completely.
+        // Customer may revise his/her address for the CustomerOrder.
+
+
 
     }
 }

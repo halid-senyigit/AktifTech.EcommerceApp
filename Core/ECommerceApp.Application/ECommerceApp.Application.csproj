@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="DTOs\Products\" />
-    <Folder Include="Features\CustomerOrders\Commands\" />
     <Folder Include="Features\Customers\Commands\" />
     <Folder Include="Features\Products\Commands\" />
     <Folder Include="Features\Products\Queries\" />
