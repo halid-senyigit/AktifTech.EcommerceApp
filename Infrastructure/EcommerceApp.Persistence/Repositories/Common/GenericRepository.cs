@@ -50,17 +50,22 @@ namespace EcommerceApp.Persistence.Repositories.Common
             return await table.Where(expression).ToListAsync();
         }
 
-        public async Task<int> RemoveAsync(T entity)
+        public async Task<int> RemoveAsync(int id)
         {
+            var entity = await table.FindAsync(id);
+            if (entity == null)
+                throw new NullReferenceException();
+
             table.Remove(entity);
-            dbContext.Entry<T>(entity).State = EntityState.Deleted;
-            return await SaveChangesAsync();
+            dbContext.Entry(entity).State = EntityState.Deleted;
+            await SaveChangesAsync();
+            return id;
         }
 
         public async Task<T> UpdateAsync(T entity)
         {
             table.Update(entity);
-            dbContext.Entry<T>(entity).State = EntityState.Modified;
+            dbContext.Entry(entity).State = EntityState.Modified;
             if (await SaveChangesAsync() > 0)
                 return entity;
             else

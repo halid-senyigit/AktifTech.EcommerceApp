@@ -64,10 +64,10 @@ namespace EcommerceApp.WebAPI.Controllers
         /// 6. The client that is consuming the API must be able to delete a CustomerOrder via an endpoint.
         /// </summary>
         /// <returns></returns>
-        [HttpDelete]
-        public async Task<IActionResult> DeleteOrder()
+        [HttpDelete("{orderId}")]
+        public async Task<IActionResult> DeleteOrder(int orderId)
         {
-            return Ok("DeleteOrder");
+            return Ok(await mediator.Send(new DeleteCustomerOrderCommand(orderId)));
         }
 
         // The client may change the product’s quantity
