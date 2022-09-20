@@ -41,6 +41,7 @@ namespace ECommerceApp.Application.Features.CustomerOrders.Queries
                 var result = new ServiceWrapper<List<GetOrderListDTO>>(orders.Select(n => new GetOrderListDTO
                 {
                     OrderId = n.Id,
+                    Address = n.Address,
                     Products = n.CustomerOrderProductRels.Select(x => new GetOrderListDTO.ProductDTO
                     {
                         ProductId = x.ProductId,

@@ -9,7 +9,7 @@ namespace ECommerceApp.Application.DTOs.CustomerOrders
     public class GetOrderListDTO
     {
         public int OrderId { get; set; }
-
+        public string Address { get; set; }
         public List<ProductDTO> Products { get; set; } = new List<ProductDTO>();
 
 

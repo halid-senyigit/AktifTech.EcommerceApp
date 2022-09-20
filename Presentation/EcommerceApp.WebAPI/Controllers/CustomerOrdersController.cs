@@ -70,10 +70,19 @@ namespace EcommerceApp.WebAPI.Controllers
             return Ok(await mediator.Send(new DeleteCustomerOrderCommand(orderId)));
         }
 
-        // The client may change the product’s quantity
+        // The client may change the product’s quantity ,add new product or remove a product from the CustomerOrder completely.
 
-        // add new product or remove a product from the CustomerOrder completely.
-        // Customer may revise his/her address for the CustomerOrder.
+
+        /// <summary>
+        /// // Customer may revise his/her address for the CustomerOrder.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        [HttpPost("UpdateAddress")]
+        public async Task<IActionResult> UpdateAddress(UpdateCustomerOrderAdressCommand data)
+        {
+            return Ok(await mediator.Send(data));
+        }
 
 
 
