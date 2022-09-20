@@ -46,7 +46,8 @@ namespace ECommerceApp.Application.Features.CustomerOrders.Queries
                     {
                         ProductId = x.ProductId,
                         Name = x.Product.Name,
-                        Price = x.Product.Price
+                        Price = x.Product.Price,
+                        Quantity = x.Quantity
                     }).ToList()
                 }).ToList());
 
